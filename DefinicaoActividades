@@ -8,7 +8,32 @@ Utilizadores
 	Farmaceutico
 	Auxiliar de farmacia
 	
+-----------------------------------------
+Menu
 
+
+Fornecimentos
+	Novo
+	Pesquisar
+
+Movimentos
+	Nova Solicitação
+	Atender Solicitações
+	Pesquisar
+
+Dispensas
+
+Consulta ao Stock
+	Fichas de Stock
+	Materiais Sanitários Existentes
+		
+Relatórios
+	Inventários
+	Movimentos
+	Dispensas
+	Relatório Mensal da Unidade Sanitária
+	
+Fecho do Dia
 	
 -----------------------------------------
 Actividades Armazem
