@@ -1,0 +1,24 @@
+Modulo de Farmácia
+
+
+
+Movimentos
+	Novo Movimento
+	Consulta Stock
+
+Fornecimentos
+	Novo Fornecimento
+	
+Material Sanitario
+	Novo Material Sanitario
+	Classificação de Medicamentos
+	
+
+Relatorios
+	
+-----------------------------------------
+perfis
+	Responsavel de farmacia
+	Atendente aos utentes
+	Farmaceutico
+	Auxiliar de farmacia
