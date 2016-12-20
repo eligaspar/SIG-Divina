@@ -1,20 +1,5 @@
 Modulo de Farmácia
 
-
-
-Movimentos
-	Novo Movimento
-	Consulta Stock
-
-Fornecimentos
-	Novo Fornecimento
-	
-Material Sanitario
-	Novo Material Sanitario
-	Classificação de Medicamentos
-	
-
-Relatorios
 	
 -----------------------------------------
 perfis
@@ -47,14 +32,24 @@ Actividades Armazem
 		Fichas de Stock
 			Entradas
 			Saidas
-			Entradas e Saidas			
-		Ver todos os Materiais
-		Por Tipo de Material Sanitario
-		Por um Material Especifico
-			Nome Generico
-			Nome de Fabrico
-			Numero de Lote
-	
+			Entradas e Saidas
+		Materiais Existentes
+			Ver todos os Materiais
+			Materiais em Pré-Ruptura
+			Materiais em Ruptura
+			Materiais em Pós-Ruptura		
+			Por Tipo de Material Sanitario
+			Por um Material Especifico
+				Nome Generico
+				Nome de Fabrico
+				Numero de Lote
+	Relatórios
+		Inventario
+		Movimentos
+			Diarios
+			Semanal
+			Mensais
+			Por intervalo de tempo
 -----------------------------------------
 Actividades Farmacia Interna
 	Movimentos
@@ -68,14 +63,17 @@ Actividades Farmacia Interna
 	Consulta ao Stock
 		Fichas de Stock
 			Entradas
-			Saidas
-			Entradas e Saidas			
-		Ver todos os Materiais
-		Por Tipo de Material Sanitario
-		Por um Material Especifico
-			Nome Generico
-			Nome de Fabrico
-			Numero de Lote
+			Saidas		
+		Materiais Existentes
+			Ver todos os Materiais
+			Materiais em Pré-Ruptura
+			Materiais em Ruptura
+			Materiais em Pós-Ruptura		
+			Por Tipo de Material Sanitario
+			Por um Material Especifico
+				Nome Generico
+				Nome de Fabrico
+				Numero de Lote
 	Relatórios
 		Inventario
 		Movimentos
@@ -94,17 +92,20 @@ Actividades Farmacia Externa
 			para utentes
 	
 	Consulta ao Stock
-		Ver todos os Materiais
-		Por Tipo de Material Sanitario
-		Por um Material Especifico
-			Nome Generico
-			Nome de Fabrico
-			Numero de Lote
-			Data de expiracao
+		Materiais Existentes
+			Ver todos os Materiais
+			Materiais em Pré-Ruptura
+			Materiais em Ruptura
+			Materiais em Pós-Ruptura		
+			Por Tipo de Material Sanitario
+			Por um Material Especifico
+				Nome Generico
+				Nome de Fabrico
+				Numero de Lote
 	Relatórios
 		Movimentos
 			Diarios
-			Semanal
+			Semanais
 			Mensais
 			Por intervalo de tempo
 		Dispensas
