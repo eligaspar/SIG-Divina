@@ -22,3 +22,52 @@ perfis
 	Atendente aos utentes
 	Farmaceutico
 	Auxiliar de farmacia
+	
+-----------------------------------------
+Actividades Farmacia Interna
+	Movimentos
+		entrada
+			do armazem
+		saida
+			para infecciologia
+			para farmacia externa
+			para area interna do hospital
+			para centro hospitalar 
+	
+	Consulta ao Stock
+		Geral
+		Por Tipo de Material Sanitario
+		Por um Material Especifico
+			Nome Generico
+			Nome de Fabrico
+			Numero de Lote
+	Relatórios
+		Inventario
+		Movimentos
+			Diarios
+			Semanal
+			Mensais
+			Por intervalo de tempo
+		Relatorio Mensal da Unidade Sanitaria
+-----------------------------------------
+Actividades Geral
+	Movimentos de material sanitario
+		entrada
+			armazem para farmacia interna
+			armazem para outras instituicoes
+		saida
+			farmacia interna para infecciologia
+			farmacia interna para farmacia externa
+			farmacia interna para area interna do hospital
+			farmacia interna para centro hospitalar
+			
+	Dispensa de material sanitario
+		farmacia externa para utente
+		farmacia externa pa utente
+		
+	Consulta ao stock
+		Armazém
+		Farmacia interna
+		Farmacia infecciologia
+		farmacia externa
+		
