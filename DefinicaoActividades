@@ -23,19 +23,54 @@ perfis
 	Farmaceutico
 	Auxiliar de farmacia
 	
+
+	
+-----------------------------------------
+Actividades Armazem
+	Fornecimentos
+		Novo Fornecimento
+		Consulta de Fornecimentos
+			Por Fornecedor
+			Por funcionario
+			Por Tipo de Fornecimento
+			Por Data de Fornecimento
+			Por Material Sanitario
+				Por Tipo
+				Por Numero de lote
+				Por Data de Expiração
+	Movimentos
+		saida
+			para farmacia externa
+			para outra instituição
+	
+	Consulta ao Stock
+		Fichas de Stock
+			Entradas
+			Saidas
+			Entradas e Saidas			
+		Ver todos os Materiais
+		Por Tipo de Material Sanitario
+		Por um Material Especifico
+			Nome Generico
+			Nome de Fabrico
+			Numero de Lote
+	
 -----------------------------------------
 Actividades Farmacia Interna
 	Movimentos
 		entrada
 			do armazem
 		saida
-			para infecciologia
 			para farmacia externa
 			para area interna do hospital
 			para centro hospitalar 
 	
 	Consulta ao Stock
-		Geral
+		Fichas de Stock
+			Entradas
+			Saidas
+			Entradas e Saidas			
+		Ver todos os Materiais
 		Por Tipo de Material Sanitario
 		Por um Material Especifico
 			Nome Generico
@@ -49,25 +84,42 @@ Actividades Farmacia Interna
 			Mensais
 			Por intervalo de tempo
 		Relatorio Mensal da Unidade Sanitaria
------------------------------------------
-Actividades Geral
-	Movimentos de material sanitario
+
+---------------------------------------------------
+Actividades Farmacia Externa
+	Movimentos
 		entrada
-			armazem para farmacia interna
-			armazem para outras instituicoes
-		saida
-			farmacia interna para infecciologia
-			farmacia interna para farmacia externa
-			farmacia interna para area interna do hospital
-			farmacia interna para centro hospitalar
-			
-	Dispensa de material sanitario
-		farmacia externa para utente
-		farmacia externa pa utente
-		
-	Consulta ao stock
-		Armazém
-		Farmacia interna
-		Farmacia infecciologia
-		farmacia externa
-		
+			da farmacia interna
+		dispensa
+			para utentes
+	
+	Consulta ao Stock
+		Ver todos os Materiais
+		Por Tipo de Material Sanitario
+		Por um Material Especifico
+			Nome Generico
+			Nome de Fabrico
+			Numero de Lote
+			Data de expiracao
+	Relatórios
+		Movimentos
+			Diarios
+			Semanal
+			Mensais
+			Por intervalo de tempo
+		Dispensas
+			Diarias
+			Semanais
+			Mensais
+			Por intervalo de data
+			Por utente
+				Nome
+				Numero de Processo
+				data de nascimento
+				idade
+			Por Material sanitario
+				Nome Generico
+				Nome de Fabrico
+				Numero de Lote
+	Fecho do Dia
+-----------------------------------------
