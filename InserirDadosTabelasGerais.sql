@@ -242,27 +242,124 @@ INSERT INTO grl_municipio(nome_municipio, fk_id_provincia) VALUES
 	('Nóqui',18),
 	('Tomboco',18);
 
+-- Tabela Comuna
+INSERT INTO grl_comuna(pk_id__comuna, descricao_comuna, fk_id_municipio) VALUES 
+	
+	-- Luanda
+	(1,'Cassoneca',96),
+	(2,'Catete',96),
+	(3,'Cabiri',96),
+	(4,'Bom Jesus',96),
+	(5,'Caculo Cahango',96),
+	(6,'Muxima',98),
+	(7,'Demba Chio',98),
+	(8,'Caxongo Novo (Quixinge)',98),
+	(9,'Mumbondo',98),
+	(10,'Cabo Ledo',98),
+	(11,'Funda',93),
+	(12,'Kikolo',93),
+	(13,'Cacuaco',93),
+	(14,'Cazenga Popular',95),
+	(15,'Hoji ya Henda',95),
+	(16,'Tala Hadi',95),
+	(17,'Calumbo',99),
+	(18,'Viana',99),
+	(19,'Zango',99),
+	(20,'Camama', 93),
+	(21,'Benfica', 93),
+	(22,'Barra do Kwanza', 93),
+	(23,'Mussulo', 93),
+	(24,'Vila do Estoril', 93),
+	(25,'Futungo', 93),
+	(26,'Ramiro', 93);
+	
 	
 -- Tabela Endereços
-INSERT INTO grl_endereco(bairro, numero_casa, fk_id_municipio) VALUES 
-	('Talatona', 'A2', 1),
-	('Estagem', 'A2', 7),
-	('Grafanil-km9', 'A2', 7),
-	('Coelho', '22', 7),
-	('28 de Agosto', '667', 1);
+INSERT INTO grl_endereco(pk_id_endereco, bairro, rua, numero_casa, fk_id_comuna) VALUES 
+	(1,'Talatona', 'Acássias Rubras', 'A2', 21),
+	(2,'Estagem', 'Fapa', 'A2', 7),
+	(3,'Grafanil-km9', 'Travessa 3', '76', 18),
+	(4,'Coelho', 'Ruas das Pedras', '22', 18),
+	(5,'Coelho', 'Rua do Pneu', '22', 18),
+	(6,'Kilamba-Kiaxi', 'Avenida Pedro de Castro Vandunem Loy', '22', 25),
+	(7,'28 de Agosto', 'Sr. Tony', '667', 25);
 	
 	
+-- Tabela Area Interna
+INSERT INTO grl_area_interna(descricao_area_interna, codigo_area_interna, observacoes) VALUES 
+    ('Ambulatório','AMB','Área Interna do hospital responsável pelas consultas feitas.'),
+    ('Internamento','INTER','Área interna do hospital responsável pelos pacientes internados.'),
+    ('Diagnósticos','DIAG','Área Interna do Hospital responsável pelos Exames.'),
+    ('Emergência','EMG','Área Interna do Hospital responsável pelas consultas emergentes.'),
+    ('Farmácia','FARM','Área Interna do Hospital responsável pelos materiais Sanitrios.'),
+    ('Superintendência','SUPI','Área Interna do hospital responsável pelas escalas de funcionários como Enfermeiros, Médicos, Farmacêuticos, etc.'),
+    ('Recursos Humanos','RH','Área Interna do hospital responsável pelo controlo geral de Funcionários.'),
+    ('Morgue','MORG','Área Interna do Hospital Responsável pelos tratamento imediato de pacientes chegados a óbito.');
 	
 	
+-- Tabela Contacto
+
+INSERT INTO grl_contacto(pk_id_contacto, telefone1, telefone2, email1, email2) VALUES 
+	(1, '917 485 924', '916 025 301', 'hdp@hospitaldivinaprovidencia.net', null),
+	(2, '917 485 924', '916 025 301', 'sjc@hospitaldivinaprovidencia.net', null),
+	(3, '917 485 924', '916 025 301', 'st@hospitaldivinaprovidencia.net', null),
+	(4, '917 485 924', '916 025 301', 'hdp@hospitaldivinaprovidencia.net', null),
+	(5, '917 485 924', '916 025 301', 'hdp@hospitaldivinaprovidencia.net', null);
 	
 	
+-- Tabela Instituição
+INSERT INTO grl_instituicao(pk_id_instituicao, codigo_instituicao, descricao, fk_id_contacto,fk_id_endereco) VALUES 
+	(1, 'HDP', 'Hospital Divina Providência', 1, 6),
+	(2, 'SJC', 'HDP - São João Calábria', 2, 6),
+	(3, 'SC', 'HDP - Santa Catarina', 3, 6),
+	(4, 'SM', 'HDP - São Marcos', 4, 6),
+	(5, 'NSP', 'HDP - Nossa Senhora da Paz', 5, 6);
 	
 	
+-- TAbela Centro Hospitalar
+INSERT INTO grl_centro_hospitalar(pk_id_centro, codigo_centro, fk_id_instituicao) VALUES 
+	(1, 'SJC', 1),
+	(2, 'SC', 1),
+	(3, 'SM', 1),
+	(4, 'NSP', 1);
+
+
+-- TAbela Dia da Semana
+INSERT INTO grl_dia_semana(pk_id_dia_semana, codigo_dia_semana, descricao) VALUES 
+(1, 'SEG','Segunda-Feira'); 
+(2, 'TER','Terça-Feira'); 
+(3, 'QUA','Quarta-Feira'); 
+(4, 'QUI','Quinta-Feira'); 
+(5, 'SEX','Sexta-Feira'); 
+(6, 'SAB','Sábado-Feira'); 
+(7, 'DOM','Domingo-Feira');
 	
+
+-- TAbela Sexo
+INSERT INTO grl_sexo(pk_id_sexo, codigo_sexo, descricao) VALUES 
+	(1, 'F', 'Feminino'),
+	(2, 'M', 'Masculino');
+
+
+-- Tabela Estado Civil
+INSERT INTO grl_estado_civil(pk_id_estado_civil, codigo_estado_civil, descricao) VALUES 
+	(1, 'S', 'Solteiro(a)'),
+	(2, 'C', 'Casado(a)'),
+	(3, 'V', 'Viúvo(a)'),
+	(4, 'D', 'Divorciado(a)');
 	
-	
-	
-	
-	
-	
-	
+
+-- TAbela Estado do Convénio
+INSERT INTO grl_estado_convenio(pk_id_estado_convenio, codigo_estado_convenio, descricao) VALUES
+	(1, '1', 'Activo'),
+	(2, '0', 'Inactivo');
+
+
+-- Tabela Religião
+
+INSERT INTO grl_religiao(pk_id_religiao, descricao) VALUES
+     (1, 'Cristianismo'),
+     (2, 'Islamismo'),
+     (3, 'Judaísmo'),
+     (4, 'Confuccionismo'),
+     (5, 'Budismo');
