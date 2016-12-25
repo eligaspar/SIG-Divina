@@ -1,0 +1,33 @@
+<h:panelGrid width="100%">
+	<p:fieldset>
+        	<h:panelGrid columns="2" width="100%" cellpadding="5">
+                	<p:outputLabel value="País *"/>
+                        <p:selectOneMenu id="comboPais" style="width: 50%" value="#{itensSelectGeraisBean.pais}">
+                        	<f:selectItems value="#{itensSelectGeraisBean.itensPais}"/>
+                                <f:ajax execute="@this" event="change" render="comboProvincia comboMunicipio"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Provícia *"/>
+                        <p:selectOneMenu id="comboProvincia" style="width: 50%" 
+                                         value="#{itensSelectGeraisBean.provincia}"
+                                         valueChangeListener="#{itensSelectGeraisBean.changeProvincia}">
+                        	<f:selectItems value="#{itensSelectGeraisBean.itensProvincia}"/>
+                                <f:ajax execute="@this" event="change" render="comboMunicipio"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Município *"/>
+                        <p:selectOneMenu id="comboMunicipio" style="width: 50%" required="true" requiredMessage="Indique o município"
+                                         value="#{funcionarioBean.funcionario.fkIdPessoa.fkIdEndereco.fkIdMunicipio.pkIdMunicipio}">
+                        	<f:selectItems value="#{itensSelectGeraisBean.itensMunicipio}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Bairro *"/>
+                        <p:inputText value="#{funcionarioBean.funcionario.fkIdPessoa.fkIdEndereco.bairro}"
+                                     required="true" requiredMessage="Indique o bairro"/>
+                        <p:outputLabel value="Rua"/>
+                        <p:inputText/>
+                        <p:outputLabel value="Nº Casa"/>
+                        <p:inputText value="#{funcionarioBean.funcionario.fkIdPessoa.fkIdEndereco.numeroCasa}"
+                                     required="true" requiredMessage="Indique o Nº Casa"/>
+                        <p:outputLabel value="Código Postal"/>
+                        <p:inputText/>
+		</h:panelGrid>
+	</p:fieldset>
+</h:panelGrid>
