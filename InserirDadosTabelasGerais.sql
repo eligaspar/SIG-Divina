@@ -326,13 +326,13 @@ INSERT INTO grl_centro_hospitalar(pk_id_centro, codigo_centro, fk_id_instituicao
 
 -- TAbela Dia da Semana
 INSERT INTO grl_dia_semana(pk_id_dia_semana, codigo_dia_semana, descricao) VALUES 
-(1, 'SEG','Segunda-Feira'); 
-(2, 'TER','Terça-Feira'); 
-(3, 'QUA','Quarta-Feira'); 
-(4, 'QUI','Quinta-Feira'); 
-(5, 'SEX','Sexta-Feira'); 
-(6, 'SAB','Sábado-Feira'); 
-(7, 'DOM','Domingo-Feira');
+(1, 'SEG','Segunda-Feira'), 
+(2, 'TER','Terça-Feira'), 
+(3, 'QUA','Quarta-Feira'), 
+(4, 'QUI','Quinta-Feira'), 
+(5, 'SEX','Sexta-Feira'), 
+(6, 'SAB','Sábado-Feira'), 
+(7, 'DOM','Domingo-Feira'),
 	
 
 -- TAbela Sexo
