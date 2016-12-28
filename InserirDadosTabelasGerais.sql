@@ -332,7 +332,7 @@ INSERT INTO grl_dia_semana(pk_id_dia_semana, codigo_dia_semana, descricao) VALUE
 (4, 'QUI','Quinta-Feira'), 
 (5, 'SEX','Sexta-Feira'), 
 (6, 'SAB','Sábado-Feira'), 
-(7, 'DOM','Domingo-Feira'),
+(7, 'DOM','Domingo-Feira');
 	
 
 -- TAbela Sexo
