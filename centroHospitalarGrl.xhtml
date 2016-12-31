@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Centros Hospitalares</title>
+    </h:head>
+
+    <h:body>
+
+        <ui:composition template="./../../template/masterPage.xhtml">
+            <ui:define name="menuHorizontal">
+                <ui:include src="./../menuHorizontalRh.xhtml"/>
+            </ui:define>
+            <ui:define name="menuLateral">
+                <ui:include src="./../menuLateralRh.xhtml"/>
+            </ui:define>
+
+            <ui:define name="center">
+                <h1>Recursos Humanos -> Centros Hospitalares</h1>
+                <p:messages id="msg" autoUpdate="true" closable="true"/>
+                <br/>
+                <h:form id="formNovo">
+                    <center>
+                        <h:panelGrid columns="2" cellpadding="3" width="70%">
+                            <p:fieldset legend="Endereço">
+                                <h:panelGrid columns="2" width="100%" cellpadding="5">
+                                    <p:outputLabel value="País *"/>
+                                    <h:selectOneMenu id="comboPais" style="width: 75%" value="#{itensAjaxBean.pais}"
+                                                     valueChangeListener="#{itensAjaxBean.changePais}">
+                                        <f:selectItems value="#{itensAjaxBean.paisList}" var="pais"
+                                                       itemLabel="#{pais.nomePais}" itemValue="#{pais.pkIdPais}"/>
+                                        <f:ajax execute="@this" event="change" render="comboProvincia comboMunicipio comboComuna"/>
+                                    </h:selectOneMenu>
+                                    <p:outputLabel value="Provícia *"/>
+                                    <h:selectOneMenu id="comboProvincia" style="width: 75%" 
+                                                     value="#{itensAjaxBean.provincia}"
+                                                     valueChangeListener="#{itensAjaxBean.changeProvincia}">
+                                        <f:selectItems value="#{itensAjaxBean.provinciaList}" var="prov"
+                                                       itemLabel="#{prov.nomeProvincia}" itemValue="#{prov.pkIdProvincia}"/>
+                                        <f:ajax execute="@this" event="change" render="comboMunicipio comboComuna"/>
+                                    </h:selectOneMenu>
+                                    <p:outputLabel value="Município *"/>
+                                    <h:selectOneMenu id="comboMunicipio" style="width: 75%" required="true" requiredMessage="Indique o município"
+                                                     value="#{itensAjaxBean.municipio}" valueChangeListener="#{itensAjaxBean.changeMunicipio}">
+                                        <f:selectItems value="#{itensAjaxBean.municipioList}" var="mun"
+                                                       itemLabel="#{mun.nomeMunicipio}" itemValue="#{mun.pkIdMunicipio}"/>
+                                        <f:ajax execute="@this" event="change" render="comboComuna"/>
+                                    </h:selectOneMenu>
+                                    <p:outputLabel value="Comuna *"/>
+                                    <h:selectOneMenu id="comboComuna" style="width: 75%" required="true" requiredMessage="Indique a comuna"
+                                                     value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdEndereco.fkIdComuna.pkIdComuna}">
+                                        <f:selectItems value="#{itensAjaxBean.comunaList}" var="com"
+                                                       itemLabel="#{com.descricaoComuna}" itemValue="#{com.pkIdComuna}"/>
+                                    </h:selectOneMenu>
+                                    <p:outputLabel value="Bairro *"/>
+                                    <p:inputText id="bairro" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdEndereco.bairro}"
+                                                 required="true" requiredMessage="Indique o bairro"/>
+                                    <p:outputLabel value="Rua"/>
+                                    <p:inputText id="rua" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdEndereco.rua}"/>
+                                </h:panelGrid>
+                            </p:fieldset>
+                            <h:panelGrid width="100%" columns="1">
+                                <p:fieldset legend="Contacto">
+                                    <h:panelGrid columns="2" cellpadding="5" width="100%">
+                                        <p:outputLabel value="Telefone1 *"/>
+                                        <p:inputText id="telefone1" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdContacto.telefone1}"
+                                                     required="true" requiredMessage="Indique o telefone1"/>
+                                        <p:outputLabel value="Telefone2"/>
+                                        <p:inputText id="telefone2" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdContacto.telefone2}"/>
+                                        <p:outputLabel value="Email1"/>
+                                        <p:inputText id="email1" style="width: 80%" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdContacto.email1}"/>
+                                        <p:outputLabel value="Email2"/>
+                                        <p:inputText id="email2" style="width: 80%" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdContacto.email2}"/>
+                                    </h:panelGrid>
+                                </p:fieldset>
+                                <h:panelGrid columns="2" cellpadding="3" width="100%">
+                                    <p:outputLabel value="Nome do Centro Hospitalar"/>
+                                    <p:inputText id="descricao" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.descricao}"
+                                                 required="true" requiredMessage="Indique o nome do centro hospitalar"
+                                                 style="width: 95%"/>
+                                    <p:outputLabel value="Sigla"/>
+                                    <p:inputText id="sigla" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.codigoInstituicao}"
+                                                 style="width: 70%"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" width="100%">
+                                    <p:commandButton value="Guardar" action="#{centroHospitalarBean.create()}" 
+                                                     style="width: 100%" process="@this comboComuna bairro rua descricao sigla telefone1 telefone2 email1 email2"
+                                                     update="bairro rua descricao sigla telefone1 telefone2 email1 email2 dataTable"/>
+                                    <p:commandButton value="Limpar" partialSubmit="true" process="@this"
+                                                     action="#{centroHospitalarBean.limpar()}" style="width: 100%" />
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </h:panelGrid>
+
+                        <p:dataTable id="dataTable" var="centro" value="#{centroHospitalarBean.findAll()}"
+                                     style="width: 70%" emptyMessage="Não Existem Centros Hospitalares"
+                                     paginator="true" paginatorPosition="bottom" rows="10">
+                            <p:column headerText="Centros Hospitalares">
+                                <center>                                        
+                                    #{centro.fkIdInstituicao.descricao}
+                                </center>
+                            </p:column>
+                            <p:column headerText="--------------------">
+                                <center>
+                                    <p:commandButton value="Editar" icon="ui-icon-pencil" onclick="dialogEditar.show();"
+                                                     action="#{centroHospitalarBean.setCentroHospitalar(centro)}" process="@this" partialSubmit="true"
+                                                     update=":formEditar:comboPaisEd :formEditar:comboProvinciaEd :formEditar:comboMunicipioEd :formEditar:comboComunaEd 
+                                                     :formEditar:bairroEd :formEditar:ruaEd :formEditar:descricaoEd :formEditar:siglaEd :formEditar:telefone1Ed :formEditar:telefone2Ed :formEditar:email1Ed :formEditar:email2Ed"/>
+                                </center>
+                            </p:column>
+                        </p:dataTable>
+                    </center>
+                </h:form>
+
+                <center>
+                    <p:dialog header="Editar Centro Hospitalar" closable="false" showEffect="fade"
+                              width="75%" widgetVar="dialogEditar" modal="true" closeOnEscape="true">
+                        <h:form id="formEditar">
+                            <p:growl autoUpdate="true"/>
+                            <h:panelGrid columns="2" cellpadding="3" width="70%">
+                                <p:fieldset legend="Endereço">
+                                    <h:panelGrid columns="2" width="100%" cellpadding="5">
+                                        <p:outputLabel value="País *"/>
+                                        <h:selectOneMenu id="comboPaisEd" style="width: 75%" value="#{itensAjaxBean.pais}"
+                                                         valueChangeListener="#{itensAjaxBean.changePais}">
+                                            <f:selectItems value="#{itensAjaxBean.paisList}" var="pais"
+                                                           itemLabel="#{pais.nomePais}" itemValue="#{pais.pkIdPais}"/>
+                                            <f:ajax execute="@this" event="change" render="comboProvinciaEd comboMunicipioEd comboComunaEd"/>
+                                        </h:selectOneMenu>
+                                        <p:outputLabel value="Provícia *"/>
+                                        <h:selectOneMenu id="comboProvinciaEd" style="width: 75%" 
+                                                         value="#{itensAjaxBean.provincia}"
+                                                         valueChangeListener="#{itensAjaxBean.changeProvincia}">
+                                            <f:selectItems value="#{itensAjaxBean.provinciaList}" var="prov"
+                                                           itemLabel="#{prov.nomeProvincia}" itemValue="#{prov.pkIdProvincia}"/>
+                                            <f:ajax execute="@this" event="change" render="comboMunicipioEd comboComunaEd"/>
+                                        </h:selectOneMenu>
+                                        <p:outputLabel value="Município *"/>
+                                        <h:selectOneMenu id="comboMunicipioEd" style="width: 75%" required="true" requiredMessage="Indique o município"
+                                                         value="#{itensAjaxBean.municipio}" valueChangeListener="#{itensAjaxBean.changeMunicipio}">
+                                            <f:selectItems value="#{itensAjaxBean.municipioList}" var="mun"
+                                                           itemLabel="#{mun.nomeMunicipio}" itemValue="#{mun.pkIdMunicipio}"/>
+                                            <f:ajax execute="@this" event="change" render="comboComunaEd"/>
+                                        </h:selectOneMenu>
+                                        <p:outputLabel value="Comuna *"/>
+                                        <h:selectOneMenu id="comboComunaEd" style="width: 75%" required="true" requiredMessage="Indique a comuna"
+                                                         value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdEndereco.fkIdComuna.pkIdComuna}">
+                                            <f:selectItems value="#{itensAjaxBean.comunaList}" var="com"
+                                                           itemLabel="#{com.descricaoComuna}" itemValue="#{com.pkIdComuna}"/>
+                                        </h:selectOneMenu>
+                                        <p:outputLabel value="Bairro *"/>
+                                        <p:inputText id="bairroEd" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdEndereco.bairro}"
+                                                     required="true" requiredMessage="Indique o bairro"/>
+                                        <p:outputLabel value="Rua"/>
+                                        <p:inputText id="ruaEd" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdEndereco.rua}"/>
+                                    </h:panelGrid>
+                                </p:fieldset>
+                                <h:panelGrid width="100%" columns="1">
+                                    <p:fieldset legend="Contacto">
+                                        <h:panelGrid columns="2" cellpadding="5" width="100%">
+                                            <p:outputLabel value="Telefone1 *"/>
+                                            <p:inputText id="telefone1Ed" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdContacto.telefone1}"
+                                                         required="true" requiredMessage="Indique o telefone1"/>
+                                            <p:outputLabel value="Telefone2"/>
+                                            <p:inputText id="telefone2Ed" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdContacto.telefone2}"/>
+                                            <p:outputLabel value="Email1"/>
+                                            <p:inputText id="email1Ed" style="width: 80%" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdContacto.email1}"/>
+                                            <p:outputLabel value="Email2"/>
+                                            <p:inputText id="email2Ed" style="width: 80%" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.fkIdContacto.email2}"/>
+                                        </h:panelGrid>
+                                    </p:fieldset>
+                                    <h:panelGrid columns="2" cellpadding="3" width="100%">
+                                        <p:outputLabel value="Nome do Centro Hospitalar"/>
+                                        <p:inputText id="descricaoEd" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.descricao}"
+                                                     required="true" requiredMessage="Indique o nome do centro hospitalar"
+                                                     style="width: 95%"/>
+                                        <p:outputLabel value="Sigla"/>
+                                        <p:inputText id="siglaEd" value="#{centroHospitalarBean.centroHospitalar.fkIdInstituicao.codigoInstituicao}"
+                                                     style="width: 70%"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2" width="100%">
+                                        <p:commandButton value="Guardar Edição" action="#{centroHospitalarBean.edit()}" onclick="dialogEditar.hide()" style="width: 100%"
+                                                         process="@this comboComunaEd bairroEd ruaEd descricaoEd siglaEd telefone1Ed telefone2Ed email1Ed email2Ed"
+                                                         update=":formNovo:bairro :formNovo:rua :formNovo:descricao :formNovo:sigla :formNovo:telefone1 :formNovo:telefone2 :formNovo:email1 :formNovo:email2 :formNovo:dataTable"/>
+                                        <p:commandButton value="Fechar" onclick="dialogEditar.hide()" partialSubmit="true" process="@this"
+                                                         action="#{centroHospitalarBean.limpar()}"  style="width: 100%"/>
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </h:form>
+                    </p:dialog>
+                </center>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
