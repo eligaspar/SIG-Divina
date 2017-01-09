@@ -1,0 +1,21 @@
+<p:commandButton value="Pesquisar" icon="ui-icon-search" ajax="true"/>
+                               <p:commandButton value="check" icon="ui-icon-check" ajax="true"/>
+                               <p:commandButton value="update" icon="ui-icon-updade" ajax="true"/>
+                               <p:commandButton value="disk" icon="ui-icon-disk" ajax="true"/>
+                               <p:commandButton value="close" icon="ui-icon-close" ajax="true"/>
+                               <p:commandButton value="home" icon="ui-icon-home" ajax="true"/>
+                               <p:commandButton value="calculator" icon="ui-icon-calculator" ajax="true"/>
+                               <p:commandButton value="help" icon="ui-icon-help" ajax="true"/>
+                               <p:commandButton value="extlink" icon="ui-icon-extlink" ajax="true"/>
+                               <p:commandButton value="print" icon="ui-icon-print" ajax="true"/>
+                               <p:commandButton value="trash" icon="ui-icon-trash" ajax="true"/>
+                               <p:commandButton value="wrench" icon="ui-icon-wrench" ajax="true"/>
+                               <p:commandButton value="refresh" icon="ui-icon-refresh" ajax="true"/>
+                               <p:commandButton value="arrowrefresh" icon="ui-icon-arrowrefresh" ajax="true"/>
+                               <p:commandButton value="newwin" icon="ui-icon-newwin" ajax="true"/>
+                               <p:commandButton value="document" icon="ui-icon-document" ajax="true"/>
+                               <p:commandButton value="folder-open" icon="ui-icon-folder-open" ajax="true"/>
+                               <p:commandButton value="image" icon="ui-icon-image" ajax="true"/>
+                               <p:commandButton value="video" icon="ui-icon-video" ajax="true"/>
+                               <p:commandButton value="alert" icon="ui-icon-alert" ajax="true"/>
+                               <p:commandButton value="person" icon="ui-icon-person" ajax="true"/>
