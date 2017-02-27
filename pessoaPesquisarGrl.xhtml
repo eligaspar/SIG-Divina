@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+     <h:head>
+          <title>Pesquisar Pessoa</title>
+          <h:outputScript name="JS/previewImagem.js"/>
+     </h:head>
+
+     <h:body>
+          <ui:composition template="./../../template/masterPage.xhtml">
+
+               <ui:define name="menuHorizontal">
+                    <ui:include src="./../menuHorizontalRh.xhtml"/>
+               </ui:define>
+               <ui:define name="menuLateral">
+                    <ui:include src="./../menuLateralRh.xhtml"/>
+               </ui:define>
+
+               <ui:define name="center">
+                    <h2>Recursos Humanos -> Pessoas (Pesquisar)</h2>
+                    <p:messages id="ms" autoUpdate="true" closable="true"/>
+                    <h:form prependId="false" >
+                         <br/>
+                         <center>
+                              <p:fieldset style="width: 97%;">
+                                   <h:panelGrid columns="2" width="100%">
+                                        <h:panelGrid columns="2" cellpadding="10" id="gridCamposPesquisa">
+                                             <h:panelGrid columns="2" cellpadding="3">
+                                                  <h:panelGrid columns="2" cellpadding="3">
+                                                       <p:outputLabel value="Nome"/>
+                                                       <f:validateBean disabled="true">
+                                                            <p:inputText value="#{pessoaBean.pessoaPesquisa.nome}"/>
+                                                       </f:validateBean>
+                                                       <p:outputLabel value="Nome do Meio"/>
+                                                       <p:inputText value="#{pessoaBean.pessoaPesquisa.nomeDoMeio}"/>
+                                                       <p:outputLabel value="Ultimo Nome"/>
+                                                       <p:inputText value="#{pessoaBean.pessoaPesquisa.sobreNome}"/>
+                                                  </h:panelGrid>
+
+                                                  <h:panelGrid columns="2" cellpadding="3">
+                                                       <p:outputLabel value="Documento Identificação"/>
+                                                       <h:selectOneMenu style="width: 100%; text-align: center" >
+                                                            <f:selectItem itemLabel="-------- Selecione --------" itemValue="#{null}"/>
+                                                            <f:selectItems value="#{itensAjaxBean.tipoDocumentoIdentificacaoList}" var="tipo"
+                                                                           itemLabel="#{tipo.descricao}" itemValue="#{tipo.pkTipoDocumentoIdentificacao}"/>
+                                                       </h:selectOneMenu>
+
+                                                       <p:outputLabel value="Nº Doc. Identificação"/>
+                                                       <p:inputText id="numDocIdentificacao"/>
+
+                                                       <p:outputLabel value="Nacionalidade"/>
+                                                       <h:selectOneMenu style="width: 100%; text-align: center" value="#{pessoaBean.pessoaPesquisa.fkIdNacionalidade.pkIdPais}">
+                                                            <f:selectItem itemLabel="-------- Selecione --------" itemValue="#{null}"/>
+                                                            <f:selectItems value="#{itensAjaxBean.paisList}" var="pais"
+                                                                           itemLabel="#{pais.nomePais}" itemValue="#{pais.pkIdPais}"/>
+                                                       </h:selectOneMenu>
+
+                                                       <p:outputLabel value="Sexo"/>
+                                                       <h:selectOneMenu style="width: 100%; text-align: center" value="#{pessoaBean.pessoaPesquisa.fkIdSexo.pkIdSexo}">
+                                                            <f:selectItem itemLabel="-------- Selecione --------" itemValue="#{null}"/>
+                                                            <f:selectItems value="#{itensAjaxBean.sexoList}" var="sexo"
+                                                                           itemLabel="#{sexo.descricao}" itemValue="#{sexo.pkIdSexo}"/>
+                                                       </h:selectOneMenu>
+                                                  </h:panelGrid>
+
+                                                  <p:commandButton style="width: 100%" value="Pesquisar" icon="ui-icon-search"
+                                                                   action="#{pessoaBean.setPesquisar(true)}" 
+                                                                   partialSubmit="true" process="gridCamposPesquisa" update="dataTable"/>
+                                                  <p:commandButton value="Limpar" action="#{pessoaBean.limparPesquisa()}" 
+                                                                   partialSubmit="true" process="@this" style="width: 100%"/>
+                                             </h:panelGrid>
+                                        </h:panelGrid>
+                                   </h:panelGrid>
+                              </p:fieldset>
+
+                              <p:dataTable id="dataTable" rows="10" paginator="true" paginatorPosition="bottom" 
+                                           var="pes" value="#{pessoaBean.pesquisarPessoas()}"
+                                           emptyMessage="Nenhum registo de pessoa encontrado">
+                                   <p:column headerText="Nome Completo">
+                                        <p:outputLabel value="#{pes.nome} #{pes.nomeDoMeio} #{pes.sobreNome}"/>
+                                   </p:column>
+                                   <p:column headerText="Documento de Identificação">
+                                        Em construção
+                                   </p:column>
+                                   <p:column headerText="Nacionalidade">
+                                        #{pes.fkIdNacionalidade.nomePais}
+                                   </p:column>
+                                   <p:column headerText="Sexo">
+                                        #{pes.fkIdSexo.descricao}
+                                   </p:column>
+                                   <p:column headerText="-----------------------">
+                                        <center>
+                                             <p:menuButton value="Opções">
+                                                  <p:menuitem value="Visualizar" action="#{pessoaBean.setPessoaVisualizar(pes)}" onclick="dialogVisualizar.show()"
+                                                              process="@this" update=":formVisual:tabPessoaVisualizar" icon="ui-icon-info"/>
+                                                  <p:menuitem rendered="#{! pessoaBean.isFuncionario(pes)}" value="Cadastrar Como Funcionário"
+                                                              action="#{rhFuncionarioBean.limpar()}" actionListener="#{pessoaBean.setPessoa(pes)}"/>
+                                                  <p:menuitem rendered="#{! pessoaBean.isCandidato(pes)}" value="Cadastrar Como Candidato" 
+                                                              action="#{rhCandidatoBean.limpar()}" actionListener="#{pessoaBean.setPessoa(pes)}"/>
+                                                  <p:menuitem rendered="#{! pessoaBean.isEstagiario(pes)}" value="Cadastrar Como Estagiário"
+                                                              action="#{rhEstagiarioBean.limpar()}" actionListener="#{pessoaBean.setPessoa(pes)}"/>
+                                             </p:menuButton>
+                                        </center>
+                                   </p:column>
+                              </p:dataTable>
+                         </center>
+                    </h:form>
+                    <center>
+                         <p:dialog header="Visualizar Pessoa" closable="false" showEffect="fade" 
+                                   widgetVar="dialogVisualizar" modal="true" width="50%" height="400px"
+                                   resizable="false">
+                              <h:form id="formVisual">
+                                   <h:panelGrid width="100%">
+                                        <h:panelGrid columns="2" class="float-right">
+                                             <p:commandButton value="Fechar" onclick="dialogEditar.hide()" 
+                                                              action="#{pessoaBean.setPessoaVisualizar(null)}" process="@this" style="width: 130px"/>
+                                        </h:panelGrid>
+                                        
+                                        <ui:include src="./pessoaVisualizarTabViewRh.xhtml"/>
+                                   </h:panelGrid>
+                              </h:form>
+                         </p:dialog>
+                    </center>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+               </ui:define>
+          </ui:composition>
+     </h:body>
+</html>

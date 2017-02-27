@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+     <h:head>
+          <title>Novo Funcionário</title>
+          <h:outputScript name="JS/previewImagem.js"/>
+     </h:head>
+
+     <h:body>
+          <ui:composition template="./../../template/masterPage.xhtml">
+
+               <ui:define name="menuHorizontal">
+                    <ui:include src="./../menuHorizontalRh.xhtml"/>
+               </ui:define>
+               <ui:define name="menuLateral">
+                    <ui:include src="./../menuLateralRh.xhtml"/>
+               </ui:define>
+
+               <ui:define name="center">
+                    <h2>Recursos Humanos -> Novo Funcionário</h2>
+                    <p:messages id="ms" autoUpdate="true" closable="true"/>
+
+                    <h:form id="formNovo">
+                         <p:tabView id="tabPrincipal" style="height: 420px">
+                              <p:tab title="Pessoa">
+                                   <ui:include src="./pessoaNovaTabViewRh.xhtml"/>
+                              </p:tab>
+
+                              <p:tab title="Identificação de Funcionário">
+                                   <center>
+                                        <h:panelGrid columns="1" width="65%">
+                                             <p:tabView style="height: 350px" id="tabFuncionario">
+                                                  <p:tab title="Dados Iniciais">
+                                                       <h:panelGrid columns="2" width="100%" cellpadding="5" id="gridTipoFuncionario">
+                                                            <p:outputLabel value="Tipo de Funcionário *"/>
+                                                            <h:selectOneMenu style="text-align: center; width: 74%" 
+                                                                             value="#{rhFuncionarioBean.funcionario.fkIdTipoFuncionario.pkIdTipoFuncionario}"
+                                                                             valueChangeListener="#{itensAjaxBean.changeTipoFuncionario}">
+                                                                 <f:selectItem itemLabel="------- Selecione -------" itemValue="#{null}"/>
+                                                                 <f:selectItems value="#{itensAjaxBean.tipoFuncionarioList}" var="tipFun"
+                                                                                itemLabel="#{tipFun.descricao}" itemValue="#{tipFun.pkIdTipoFuncionario}"/>
+                                                                 <f:ajax execute="@this" event="change" render="gridGuiaTransferencia"/>
+                                                            </h:selectOneMenu>
+                                                            <p:outputLabel value="Nível Acadêmico *"/>
+                                                            <h:selectOneMenu style="width: 73%; text-align: center" required="true" 
+                                                                             requiredMessage="Indique o nivel acadêmico"
+                                                                             value="#{rhFuncionarioBean.funcionario.fkIdNivelAcademico.pkIdNivelAcademico}">
+                                                                 <f:selectItem itemLabel="------ Selecione ------"/>
+                                                                 <f:selectItems value="#{itensAjaxBean.nivelAcademicoList}" var="niv"
+                                                                                itemLabel="#{niv.descricaoNivelAcademico}" itemValue="#{niv.pkIdNivelAcademico}"/>
+                                                            </h:selectOneMenu>
+                                                            <p:outputLabel value="Nº Cartão de Identidade *"/>
+                                                            <p:inputText style="width: 70%" value="#{rhFuncionarioBean.funcionario.numeroCartao}"
+                                                                         required="true" requiredMessage="Indique o número do cartão de identidade"/>
+                                                            <p:outputLabel value="Nº Bilhete de Identidade *"/>
+                                                            <p:inputText style="width: 70%" value="#{rhFuncionarioBean.funcionario.numeroBi}"
+                                                                         required="true" requiredMessage="Indique o número do bilhete de identidade"/>
+                                                            <p:outputLabel value="Nº de Contribuinte *"/>
+                                                            <p:inputText style="width: 70%" value="#{rhFuncionarioBean.funcionario.numeroContribuinte}"
+                                                                         required="true" requiredMessage="Indique o número de contribuinte"/>
+                                                       </h:panelGrid>
+                                                       <h:panelGrid id="gridGuiaTransferencia" width="85%">
+                                                            <h:panelGrid rendered="#{itensAjaxBean.renderizarTransferencia()}" 
+                                                                         columns="2" width="100%">
+                                                                 <p:outputLabel value="Nº Guia de Tranferência *"/>
+                                                                 <p:inputText value="#{rhFuncionarioBean.funcionario.numeroGuiaTransferencia}" style="width: 85%; float: right"
+                                                                              required="true" requiredMessage="Indique o número da guia de tranferência"/>
+                                                            </h:panelGrid>
+                                                            <p:panel rendered="#{itensAjaxBean.renderizarTransferencia()}" style="height: 50px">
+                                                                 <h:panelGrid columns="5" cellpadding="7">
+                                                                      <p:commandButton value="Carregar" onclick="dialogAnexo.show()" process="@this"/>
+                                                                      <p:commandButton value="Remover" process="@this" update="@this"
+                                                                                       action="#{rhFuncionarioBean.removerAnexo(rhFuncionarioBean.funcionario.fkIdAnexoGuiaTransferencia, true) }"/>
+                                                                      <p:commandButton process="@this" value="Previsualizar"
+                                                                                       action="#{rhFuncionarioBean.previsualizarAnexo(rhFuncionarioBean.funcionario.fkIdAnexoGuiaTransferencia)}"/>
+                                                                      Verificado ? <p:selectBooleanCheckbox value="#{rhFuncionarioBean.funcionario.fkIdAnexoGuiaTransferencia.ficheiro != null}"
+                                                                                                            disabled="true" required="true" requiredMessage="Carregue o anexo da guia de transferência"/>
+                                                                 </h:panelGrid>
+                                                            </p:panel>
+                                                       </h:panelGrid>
+                                                  </p:tab>
+                                                  <p:tab title="Dados Profissionais">
+                                                       <h:panelGrid columns="2" cellpadding="3" width="100%">
+                                                            <p:outputLabel value="Profissão *"/>
+                                                            <h:selectOneMenu style="text-align: center; width: 70%" value="#{itensAjaxBean.profissao}" 
+                                                                             valueChangeListener="#{itensAjaxBean.changeProfissao}">
+                                                                 <f:selectItems value="#{itensAjaxBean.profissaoList}" var="prof"
+                                                                                itemLabel="#{prof.descricao}" itemValue="#{prof.pkIdProfissao}"/>
+                                                                 <f:ajax execute="@this" event="change" render="comboCategoria comboEspecialidade1 comboEspecialidade2"/>
+                                                            </h:selectOneMenu>
+                                                            <p:outputLabel value="Categoria *"/>
+                                                            <h:selectOneMenu id="comboCategoria" style="text-align: center; width: 70%" 
+                                                                             value="#{rhFuncionarioBean.funcionario.fkIdCategoria.pkIdCategoriaProfissao}"
+                                                                             required="true" requiredMessage="Indique a categoria">
+                                                                 <f:selectItem itemLabel="------- Selecione -------"/>
+                                                                 <f:selectItems value="#{itensAjaxBean.categoriaProfissaoList}" var="categ"
+                                                                                itemLabel="#{categ.descricao}" itemValue="#{categ.pkIdCategoriaProfissao}"/>
+                                                            </h:selectOneMenu>
+                                                            <p:outputLabel value="Especialidade1"/>
+                                                            <h:selectOneMenu id="comboEspecialidade1" style="text-align: center; width: 70%" 
+                                                                             value="#{rhFuncionarioBean.funcionario.fkIdEspecialidade1.pkIdEspecialidade}">
+                                                                 <f:selectItem itemLabel="------- Selecione -------" itemValue="#{null}"/>
+                                                                 <f:selectItems value="#{itensAjaxBean.especialidadeList}" var="esp"
+                                                                                itemLabel="#{esp.descricao}" itemValue="#{esp.pkIdEspecialidade}"/>
+                                                            </h:selectOneMenu>
+                                                            <p:outputLabel value="Especialidade2"/>
+                                                            <h:selectOneMenu id="comboEspecialidade2" style="text-align: center; width: 70%" 
+                                                                             value="#{rhFuncionarioBean.funcionario.fkIdEspecialidade2.pkIdEspecialidade}">
+                                                                 <f:selectItem itemLabel="------- Selecione -------" itemValue="#{null}"/>
+                                                                 <f:selectItems value="#{itensAjaxBean.especialidadeList}" var="esp"
+                                                                                itemLabel="#{esp.descricao}" itemValue="#{esp.pkIdEspecialidade}"/>
+                                                            </h:selectOneMenu>
+                                                       </h:panelGrid>
+                                                  </p:tab>
+
+                                                  <p:tab title="Colocação">
+                                                       <h:panelGrid columns="2" width="100%" cellpadding="5" id="gridColocacao">
+                                                            <p:outputLabel value="Centro Hospitalar *"/>
+                                                            <h:selectOneMenu id="comboCentro" style="width: 73%; text-align: center"
+                                                                             value="#{rhFuncionarioBean.funcionario.fkIdCentroHospitalar.pkIdCentro}"
+                                                                             valueChangeListener="#{itensAjaxBean.changeCentroHospitalar}">
+                                                                 <f:selectItem itemLabel="------- Selecione -------" itemValue="#{null}"/>
+                                                                 <f:selectItems value="#{itensAjaxBean.centroHospitalarList}" var="centro"
+                                                                                itemLabel="#{centro.fkIdInstituicao.descricao}" itemValue="#{centro.pkIdCentro}"/>
+                                                                 <p:ajax process="@this" event="change" update="gridColocacao"/>
+                                                            </h:selectOneMenu>
+                                                            <p:outputLabel value="Departamento *" rendered="#{itensAjaxBean.renderCentroDepartamentoSeccaoFuncionario()}"/>
+                                                            <h:selectOneMenu id="comboDepartamento" style="width: 73%; text-align: center" value="#{itensAjaxBean.departamento}"
+                                                                             valueChangeListener="#{itensAjaxBean.changeDepartamento}"
+                                                                             rendered="#{itensAjaxBean.renderCentroDepartamentoSeccaoFuncionario()}">
+                                                                 <f:selectItems value="#{itensAjaxBean.departamentoList}" var="depart"
+                                                                                itemLabel="#{depart.descricao}" itemValue="#{depart.pkIdDepartamento}"/>
+                                                                 <f:ajax execute="@this" event="change" render="comboSeccao"/>
+                                                            </h:selectOneMenu>
+                                                            <p:outputLabel value="Secção *" rendered="#{itensAjaxBean.renderCentroDepartamentoSeccaoFuncionario()}"/>
+                                                            <h:selectOneMenu id="comboSeccao" style="width: 73%; text-align: center"  
+                                                                             value="#{itensAjaxBean.seccaoTrabalho}" valueChangeListener="#{itensAjaxBean.changeSeccaoTrabalho}"
+                                                                             rendered="#{itensAjaxBean.renderCentroDepartamentoSeccaoFuncionario()}">
+                                                                 <f:selectItems value="#{itensAjaxBean.seccaoTrabalhoList}" var="sec"
+                                                                                itemLabel="#{sec.descricao}" itemValue="#{sec.pkIdSeccaoTrabalho}"/>
+                                                            </h:selectOneMenu>
+                                                            <p:outputLabel value="Área de Trabalho *"/>
+                                                            <p:inputText style="width: 70%; text-align: center" value="#{rhFuncionarioBean.funcionario.areaTrabalho}"
+                                                                         required="true" requiredMessage="Indique a área de trabalho"/>
+                                                            <p:outputLabel value="Função *"/>
+                                                            <p:inputText style="width: 70%; text-align: center" value="#{rhFuncionarioBean.funcionario.funcao}"
+                                                                         required="true" requiredMessage="Indique a função"/>
+                                                       </h:panelGrid>
+                                                  </p:tab>
+                                                  <p:tab title="Subsídios">
+                                                       <h:panelGrid columns="2" width="80%" cellpadding="5" id="gridSubsidios">
+                                                            <p:outputLabel value="Subsídios"/>
+                                                            <p:selectManyMenu style="text-align: center; width: 385px; height: 140px; overflow-y: scroll" value="#{rhFuncionarioBean.listaSubsidios}">
+                                                                 <f:selectItems value="#{itensAjaxBean.subsidioList}" var="subsidio"
+                                                                                itemValue="#{subsidio.pkIdSubsidio}" itemLabel="#{subsidio.descricaoSubsidio} -- #{subsidio.obrigatorio ? 'Obrigatório':'Não Obrigatório'} -- Valor: #{subsidio.valor}"/>
+                                                            </p:selectManyMenu>
+                                                       </h:panelGrid>
+                                                  </p:tab>
+                                                  <p:tab title="Estado do Funcionário">
+                                                       <h:panelGrid columns="2" width="80%" cellpadding="5" id="gridEstadoFuncionario">
+                                                            <p:outputLabel value="Data de Admissão *"/>
+                                                            <p:calendar navigator="true" size="39" value="#{rhFuncionarioBean.funcionario.dataAdmissao}" yearRange= "c-120:c" 
+                                                                        required="true" requiredMessage="Indique a data de admissão">
+                                                            </p:calendar>
+                                                            <p:outputLabel value="Estado do Funcionário *"/>
+                                                            <h:selectOneMenu id="comboEstadoFuncionario" style="width: 290px; text-align: center" 
+                                                                             value="#{rhFuncionarioBean.funcionario.fkIdEstadoFuncionario.pkIdEstadoFuncionario}"
+                                                                             required="true" requiredMessage="Indique o estado do funcionário">
+                                                                 <f:selectItem itemLabel="------- Selecione -------"/>
+                                                                 <f:selectItems value="#{itensAjaxBean.estadoFuncionarioList}" var="estFunc"
+                                                                                itemLabel="#{estFunc.descricao}" itemValue="#{estFunc.pkIdEstadoFuncionario}"/>
+                                                            </h:selectOneMenu>
+                                                       </h:panelGrid>
+                                                  </p:tab>
+                                             </p:tabView>
+                                        </h:panelGrid>
+                                   </center>
+                              </p:tab>
+                         </p:tabView>
+                         <h:panelGrid columns="2" class="float-right">
+                              <p:commandButton style="width: 170px" value="Guardar Funcionário" 
+                                               action="#{rhFuncionarioBean.create()}" update="tabPrincipal"/>
+                              <p:commandButton style="width: 170px" value="Voltar" process="@this" 
+                                               action="#{rhFuncionarioBean.limparPesquisa()}"/>
+                         </h:panelGrid>
+
+                    </h:form>
+
+                    <ui:include src="./pessoaDialogsFotoDocumentoRh.xhtml"/>
+
+                    <p:dialog widgetVar="dialogAnexo" header="Carregamento de Ficheiros"
+                              width="45%" height="210px" showEffect="fade" closable="true"
+                              hideEffect="fade" modal="true" position="top">
+                         <h:form enctype="multipart/form-data" prependId="false" id="formAnexo">
+                              <p:growl id="msgAnexo" autoUpdate="true"/>
+                              <div class="float-right">
+                                   <h:commandButton value="Carregar" onclick="dialogAnexo.hide()" 
+                                                    action="#{rhFuncionarioBean.uploadAnexo()}">
+                                        <f:ajax execute="@form" render="@form :formNovo:tabPrincipal:tabFuncionario:gridGuiaTransferencia"/>
+                                   </h:commandButton>
+                                   <h:commandButton value="Fechar" type="button" onclick="dialogAnexo.hide()"/>
+                              </div>
+                              <center>
+                                   <br/>
+                                   <h:panelGrid columns="1" width="90%">
+                                        <p:tabView id="tabUploadAnexo">
+                                             <p:tab title="Escolher no Dispositivo">
+                                                  <h:inputFile id="inputAnexo" value="#{rhFuncionarioBean.anexoCarregado}" 
+                                                               validator="#{validarBean.validarAnexo}"/>
+                                             </p:tab>
+                                        </p:tabView>
+                                   </h:panelGrid>
+                              </center>
+                         </h:form>
+                    </p:dialog>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+               </ui:define>
+          </ui:composition>
+     </h:body>
+</html>

@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+     <h:head>
+          <h:outputScript name="JS/previewImagem.js"/>
+     </h:head>
+
+     <h:body>
+          <p:tabView id="tabPessoaVisualizar">
+               <p:tab title="Fotografia">
+                    <p:panel style="width:220px; height:160px;">
+                         <center>
+                              <h:graphicImage id="imgFotografia" url="#{pessoaBean.pastaFoto}#{pessoaBean.pessoaVisualizar.fkIdFoto.ficheiro}" width="190px" height="140px"/>
+                         </center>
+                    </p:panel>
+               </p:tab>
+               <p:tab title="Dados Pessoais">
+                    <h:panelGrid columns="2" cellpadding="4">
+                         <p:outputLabel style="font-size: 15px" value="Nome: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.nome} #{pessoaBean.pessoaVisualizar.nomeDoMeio}
+                                        #{pessoaBean.pessoaVisualizar.sobreNome}"/>
+                         <p:outputLabel style="font-size: 15px" value="Documento Identificação: "/>
+                         <p:outputLabel value="Em Construção"/>
+                         <p:outputLabel style="font-size: 15px" value="Nº Documento Identificação: "/>
+                         <p:outputLabel value="Em Construção"/>
+                         <p:outputLabel style="font-size: 15px" value="Data de Nascimento: "/>
+                         <h:inputText value="#{pessoaBean.pessoaVisualizar.dataNascimento}" style="border: none" readonly="true">
+                              <f:convertDateTime pattern="dd-MM-yyyy"/>
+                         </h:inputText>
+                         <p:outputLabel style="font-size: 15px" value="Sexo: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdSexo.descricao}"/>
+                         <p:outputLabel style="font-size: 15px" value="Nacionalidade: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdNacionalidade.nomePais}"/>
+                         <p:outputLabel style="font-size: 15px" value="Estado Civil: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEstadoCivil.descricao}"/>
+                    </h:panelGrid>
+               </p:tab>
+               <p:tab title="Filiação">
+                    <h:panelGrid columns="2" cellpadding="7">
+                         <p:outputLabel style="font-size: 15px" value="Nome do Pai: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.nomePai}"/>
+                         <p:outputLabel style="font-size: 15px" value="Nome da Mãe: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.nomeMae}"/>
+                    </h:panelGrid>
+               </p:tab>
+               <p:tab title="Contacto">
+                    <h:panelGrid columns="2" cellpadding="7">
+                         <p:outputLabel style="font-size: 15px" value="Telefone1: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdContacto.telefone1}"/>
+                         <p:outputLabel style="font-size: 15px" value="Telefone2: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdContacto.telefone2}"/>
+                         <p:outputLabel style="font-size: 15px" value="Email1: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdContacto.email1}"/>
+                         <p:outputLabel style="font-size: 15px" value="Email2: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdContacto.email2}"/>
+                    </h:panelGrid>
+               </p:tab>
+               <p:tab title="Endereço">
+                    <h:panelGrid columns="2" cellpadding="5">
+                         <p:outputLabel style="font-size: 15px" value="País: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEndereco.fkIdComuna.fkIdMunicipio.fkIdProvincia.fkIdPais.nomePais}"/>
+                         <p:outputLabel style="font-size: 15px" value="Província: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEndereco.fkIdComuna.fkIdMunicipio.fkIdProvincia.nomeProvincia}"/>
+                         <p:outputLabel style="font-size: 15px" value="Município: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEndereco.fkIdComuna.fkIdMunicipio.nomeMunicipio}"/>
+                         <p:outputLabel style="font-size: 15px" value="Comuna: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEndereco.fkIdComuna.descricaoComuna}"/>
+                         <p:outputLabel style="font-size: 15px" value="Bairro: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEndereco.bairro}"/>
+                         <p:outputLabel style="font-size: 15px" value="Rua: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEndereco.rua}"/>
+                         <p:outputLabel style="font-size: 15px" value="Nº Casa: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEndereco.numeroCasa}"/>
+                         <p:outputLabel style="font-size: 15px" value="Código Postal: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdEndereco.codigoPostal}"/>
+                    </h:panelGrid>
+               </p:tab>
+               <p:tab title="Outros">
+                    <h:panelGrid columns="2" cellpadding="7">
+                         <p:outputLabel style="font-size: 15px" value="Religião: "/>
+                         <p:outputLabel value="#{pessoaBean.pessoaVisualizar.fkIdReligiao.descricao}"/>
+                    </h:panelGrid>
+               </p:tab>
+          </p:tabView>
+     </h:body>
+</html>
