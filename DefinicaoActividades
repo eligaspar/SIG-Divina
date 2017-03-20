@@ -1,0 +1,151 @@
+Modulo de Farmácia - Actividades
+
+	
+-----------------------------------------
+Utilizadores
+	Responsavel de farmacia
+	Atendente aos utentes
+	Farmaceutico
+	Auxiliar de farmacia
+	
+-----------------------------------------
+Menu
+
+
+Fornecimentos
+	Novo
+	Pesquisar
+
+Movimentos
+	Nova Solicitação
+	Atender Solicitações
+	Pesquisar
+
+Dispensas
+
+Consulta ao Stock
+	Fichas de Stock
+	Materiais Sanitários Existentes
+		
+Relatórios
+	Inventários
+	Movimentos
+	Dispensas
+	Relatório Mensal da Unidade Sanitária
+	
+Fecho do Dia
+	
+-----------------------------------------
+Actividades Armazem
+	Fornecimentos
+		Novo Fornecimento
+		Consulta de Fornecimentos
+			Por Fornecedor
+			Por funcionario
+			Por Tipo de Fornecimento
+			Por Data de Fornecimento
+			Por Material Sanitario
+				Por Tipo
+				Por Numero de lote
+				Por Data de Expiração
+	Movimentos
+		saida
+			para farmacia externa
+			para outra instituição
+	
+	Consulta ao Stock
+		Fichas de Stock
+			Entradas
+			Saidas
+			Entradas e Saidas
+		Materiais Existentes
+			Ver todos os Materiais
+			Materiais em Pré-Ruptura
+			Materiais em Ruptura
+			Materiais em Pós-Ruptura		
+			Por Tipo de Material Sanitario
+			Por um Material Especifico
+				Nome Generico
+				Nome de Fabrico
+				Numero de Lote
+	Relatórios
+		Inventario
+		Movimentos
+			Diarios
+			Semanal
+			Mensais
+			Por intervalo de tempo
+-----------------------------------------
+Actividades Farmacia Interna
+	Movimentos
+		entrada
+			do armazem
+		saida
+			para farmacia externa
+			para area interna do hospital
+			para centro hospitalar 
+	
+	Consulta ao Stock
+		Fichas de Stock
+			Entradas
+			Saidas		
+		Materiais Existentes
+			Ver todos os Materiais
+			Materiais em Pré-Ruptura
+			Materiais em Ruptura
+			Materiais em Pós-Ruptura		
+			Por Tipo de Material Sanitario
+			Por um Material Especifico
+				Nome Generico
+				Nome de Fabrico
+				Numero de Lote
+	Relatórios
+		Inventario
+		Movimentos
+			Diarios
+			Semanal
+			Mensais
+			Por intervalo de tempo
+		Relatorio Mensal da Unidade Sanitaria
+
+---------------------------------------------------
+Actividades Farmacia Externa
+	Movimentos
+		entrada
+			da farmacia interna
+		dispensa
+			para utentes
+	
+	Consulta ao Stock
+		Materiais Existentes
+			Ver todos os Materiais
+			Materiais em Pré-Ruptura
+			Materiais em Ruptura
+			Materiais em Pós-Ruptura		
+			Por Tipo de Material Sanitario
+			Por um Material Especifico
+				Nome Generico
+				Nome de Fabrico
+				Numero de Lote
+	Relatórios
+		Movimentos
+			Diarios
+			Semanais
+			Mensais
+			Por intervalo de tempo
+		Dispensas
+			Diarias
+			Semanais
+			Mensais
+			Por intervalo de data
+			Por utente
+				Nome
+				Numero de Processo
+				data de nascimento
+				idade
+			Por Material sanitario
+				Nome Generico
+				Nome de Fabrico
+				Numero de Lote
+	Fecho do Dia
+-----------------------------------------
