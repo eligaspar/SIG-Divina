@@ -1,0 +1,19 @@
+-- Table: grl_comuna
+
+-- DROP TABLE grl_comuna;
+
+CREATE TABLE grl_comuna
+(
+  pk_id__comuna serial NOT NULL,
+  descricao_comuna character varying(100) NOT NULL,
+  fk_id_municipio integer,
+  CONSTRAINT grl_comuna_pkey PRIMARY KEY (pk_id__comuna),
+  CONSTRAINT grl_comuna_fk_id_municipio_fkey FOREIGN KEY (fk_id_municipio)
+      REFERENCES grl_municipio (pk_id_municipio) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE grl_comuna
+  OWNER TO postgres;
